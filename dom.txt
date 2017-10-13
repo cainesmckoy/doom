@@ -1,6 +1,12 @@
+
+Check aliases
+
 /etc/security/access.conf
-]check .bash_history file
+
+check .bash_history file
+
 create the script
+
 Check hosts /etc/hosts   - should only have 127.0.0.1 addresses
 Quickly check DNS config/Bind files for DNS poison
 Check ALL commands for possible alteration 
