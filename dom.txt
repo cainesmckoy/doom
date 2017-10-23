@@ -1,6 +1,8 @@
 
 Check aliases
 
+unalias "alias=used"
+
 /etc/security/access.conf
 
 check .bash_history file
