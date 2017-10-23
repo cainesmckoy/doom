@@ -71,9 +71,30 @@ TO CONFIGURE A STATIC IP
 Dns-nameserver 8.8.8.8 
 dnssearch free.dom
 
+DISABLE IPV6
+
+sudo vi /etc/sysctl.conf     
+
+#ADD THESE LINES
+
+net.ipv6.conf.all.disable_ipv6 = 1
+net.ipv6.conf.default.disable_ipv6 = 1
+net.ipv6.conf.lo.disable_ipv6 = 1
+
+cat /proc/sys/net/ipv6/conf/all/disable_ipv6
+
+If it reports a '1' IPV6 has been disabled
+If it reports a '0' run
+
+sudo sysctl -p
+
+cat /proc/sys/net/ipv6/conf/all/disable_ipv6
+
+Should report a '1'
 
 
-THIS IS THE SSH CONFIG FILE 
+
+THIS IS THE CLEAN SSH CONFIG FILE 
 etc/ssh/sshd_config
 
 # Package generated configuration file
