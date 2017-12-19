@@ -19,22 +19,35 @@ If there is random text and symbols the command is safe
 Check Processes
 	ps 	kill PID 	pkill -9 NAME
 Make New Sudo account
+--------------------------------------------------------------------------------------------------
 adduser NAME
 usermod –aG NAME
 Test Account
 	Su – name
 REMOVE OLD SUDO ACCOUNTS
+
 CHANGE ROOT PASSWORD
+
 Change Passwords Before Lunch and right after Lunch
+
 	passwd NAME
 Check sudoers
+
 	VI sudoers
+	
 Get rid of extra accounts
-	Cut –d: -f1,3 /etc/passwd	(LISTS ALL USERS)
+
+	Cut –d: -f1,3 /etc/passwd (LISTS ALL USERS)
+	
 Less/etc/passwd passwd –l NAME 	(THIS DISABLES)
+
 	Userdel –r NAME (THIS DELETES)
+	
 Check IP tables
 	Sudo iptables –L
+	
+SSH STUFF
+--------------------------------------------------------------------------------------------------
 Check for logins without authentication
 	Sudo vi /etc/ssh/sshd_config	(CHECK FOR ANYTHING THAT SAYS LOGIN WITHOUT PASSWORD)
 	Harden SSH
@@ -44,7 +57,22 @@ Check for logins without authentication
 					AllowTcpForwarding no
 					X11Forwarding no
 Logs information on ssh-		LogLevel VERBOSE
+
+
+Make ssh Banner
+---------------
+vi /etc/issue.net #add the banner here
+
+
+vi /etc/ssh/sshd_config
+
+
+Banner /etc/issue.net (you can use any path you want)
+
+sudo service ssh restart
+
 Make a Script to check files that have been changed within the last 60 minutes 
+--------------------------------------------------------------------------------------------------
 	#!/bin/bash
 	sudo rm -rf 115
 	sudo mkdir 115
