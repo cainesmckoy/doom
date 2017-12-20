@@ -321,3 +321,8 @@ require_ssl_reuse=NO
 ssl_ciphers=HIGH
 
 sudo service vsftpd restart
+
+ADD FTP BANNER
+---------------
+
+ftpd_banner=BTteam#
