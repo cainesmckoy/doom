@@ -1,0 +1,108 @@
+User EXEC Begin a session
+ using Telnet, SSH,
+ or console.
+
+Privileged EXEC While in user
+ EXEC mode, enter
+ the enable
+ command.
+
+Global configuration While in privileged
+ EXEC mode, enter
+ the configure
+ command.
+ Use this mode to
+configure parameters
+that apply to the
+entire switch.
+
+VLAN configuration While in global
+configuration mode, enter the
+vlan vlan-id
+command.
+
+Interface configuration While in global
+configuration mode, enter the
+interface command
+(with a specific
+interface).
+Use this mode to
+configure parameters
+for the Ethernet
+ports.
+
+Line configuration While in global
+configuration mode, specify a line
+with the line vty or
+line console
+command
+
+
+Setting or Changing a Static Enable Password
+
+Switch> enable
+
+Switch# configure terminal
+
+Switch(config)# enable password secret321
+
+Switch(config)# end
+
+
+Encryption prevents the password from being readable in the configuration file.
+
+Switch> enable
+
+Switch# configure terminal
+
+Switch(config)# enable secret level 1 password secret123sample
+
+Switch(config)# service password-encryption
+
+Switch(config)# end
+
+If you specify an encryption type and then enter a clear text password, you can not re-enter privileged EXEC mode. You cannot recover a lost encrypted password by any method.
+
+Disabling Password Recovery
+
+Switch> enable
+
+Switch# configure terminal
+
+Switch(config)# system disable password recovery switch all
+
+Switch(config)# end
+
+Switch# show running-config
+
+Setting a Telnet Password for a Terminal Line
+
+Switch> enable
+
+Switch# configure terminal
+
+Switch(config)# line vty 0 15
+
+Switch(config-line)# password abcxyz543
+
+Switch(config-line)# end
+
+Switch# show running-config
+
+
+
+
+
+
+
+
+To provide an additional layer of security, particularly for passwords that cross the network or that are stored
+on a Trivial File Transfer Protocol (TFTP) server, you can use either the enable password or enable secret
+global configuration commands. Both commands accomplish the same thing; that is, you can establish an
+encrypted password that users must enter to access privileged EXEC mode (the default) or any privilege level
+you specify.
+We recommend that you use the enable secret command because it uses an improved encryption algorithm.
+If you configure the enable secret command, it takes precedence over the enable password command; the
+two commands cannot be in effect simultaneously.
+If you enable password encryption, it applies to all passwords including username passwords, authentication
+key passwords, the privileged command password, and console and virtual terminal line passwords.
