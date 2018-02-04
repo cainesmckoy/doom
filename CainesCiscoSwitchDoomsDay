@@ -89,6 +89,218 @@ Switch(config-line)# end
 
 Switch# show running-config
 
+Setting Up the Switch to Run SSH
+
+Switch > enable
+
+Switch# configure terminal
+
+Switch(config)# hostname your_hostname
+
+Switch(config)# ip domain-name your_domain
+
+Switch(config)# crypto key generate rsa
+
+Switch(config)# end
+
+Switch# show running-config
+
+
+Configuring the SSH server
+
+Switch> enable
+
+Switch# configure terminal
+
+Switch(config)# ip ssh version 1
+
+Switch(config)# ip ssh timeout 90 authentication-retries 2
+
+Switch(config)# line vty 1 10
+
+Switch(config)# end
+
+Switch# show running-config
+
+
+show ip ssh - Shows the version and configuration information for the SSH server
+
+
+show ssh - shows the status of the SSH server
+
+
+ip http secure-client-auth
+
+
+How to Configure Secure HTTP Servers and Clients
+
+Switch# configure terminal
+
+Switch(config)# hostname your_hostname
+
+Switch(config)# ip domain-name your_domain
+
+Switch(config)# crypto key generate rsa
+
+Switch(config)# crypto ca trustpoint your_trustpoint
+
+Switch(ca-trustpoint)# enrollment url http://your_server:80
+
+Switch(ca-trustpoint)# enrollment http-proxy your_host 49
+
+Switch(ca-trustpoint)# crl query ldap://your_host:49
+
+Switch(ca-trustpoint)# primary your_trustpoint
+
+Switch(ca-trustpoint)# exit
+
+Switch(config)# crypto ca authentication your_trustpoint
+
+Switch(config)# crypto ca enroll your_trustpoint
+
+Switch(config)# end
+
+
+
+Configuring the Secure HTTP server
+
+Switch# show ip http server status
+
+Switch# configure terminal
+
+Switch(config)# ip http secure-port 443
+
+Switch(config)# ip http secure-client-auth
+
+Switch(config)# ip http secure-trustpoint your_trustpoint
+
+Switch(config)# ip http path/your_server:80
+
+Switch(config)# ip http access-class 2
+
+Switch(config)# ip http max-connections 4
+
+Switch(config)# ip http timeout-policy idle 120 life 240 requests 1
+
+Switch(config)# end
+
+Configuring the Secure HTTP Client
+
+Switch# configure terminal
+
+Switch(config)# ip http client secure-trustpoint your_trustpoint
+
+Switch(config)# ip http client secure-ciphersuite rc4-128-md5
+
+Switch(config)# end
+
+
+IPV4 ACL
+
+Switch(config)# access-list 102 permit tcp any host 10.1.1.1 eq smtp
+
+Switch(config)# access-list 102 deny tcp any host 10.1.1.2 eq telnet
+
+Switch(config)# access-list 102 permit tcp any host 10.1.1.2
+
+Switch(config)# access-list 102 deny tcp any any
+
+Creating a Numbered Standard ACL
+
+Switch> enable
+
+Switch# configure terminal
+
+Switch(config)# access-list 2 deny your_host
+
+Switch(config)# end
+
+Switch# show running-config
+
+Switch# copy running-config startup-config
+
+
+Creating a Numbered Extended ACL
+
+Switch# configure terminal
+
+Switch(config)#  access-list 101 permit ip host 10.1.1.2 any precedence 0 tos 0 log
+
+Switch(config)#  access-list 101 permit tcp any any eq 500
+
+Switch(config)# access-list 101 permit udp any any eq 100
+
+Switch(config)# access-list 101 permit icmp any any 200
+
+Switch(config)# access-list 101 permit igmp any any 14
+
+Switch(config)# end
+
+
+Creating Named Standard ACLs
+
+Switch> enable
+
+Switch# configure terminal
+
+Switch(config)# ip access-list standard 20
+
+Switch(config-std-nacl)# deny 192.168.0.0 0.0.255.255 255.255.0.0 0.0.255.255
+
+Switch(config-std-nacl)# permit 10.108.0.0 0.0.0.0 255.255.255.0 0.0.0.0
+
+Switch(config-std-nacl)#end
+
+Switch# show running-config
+
+
+Creating Extended NAmed ACLs
+
+Switch> enable
+
+Switch# configure terminal
+
+Switch(config)# ip access-list extended 150
+
+Switch(config-ext-nacl)# permit 0 any any
+
+Switch(config-ext-nacl)# end
+
+Switch# show running-config
+
+Switch# copy running-config startup-config
+
+
+
+Configuring VLAN Maps
+
+Switch(config)# vlan access-map mmap_1 20
+
+Switch(config-access-map)# match ip address ip2
+
+Switch(config-access-map)# action forward
+or
+Switch(config-access-map)# action drop
+
+Switch(config)# vlan filter map 1 vlan-list 20-22
+
+
+Creating a VLAN Map
+
+Switch# configure terminal
+
+Switch(config)# vlan access-map map_1 20
+
+Switch(config-access-map)# match ipaddress ip2
+
+Switch(config-access-map)# action action forward
+
+Switch(config-access-map)# end
+
+Switch# show running-config
+
+
+
 
 
 
