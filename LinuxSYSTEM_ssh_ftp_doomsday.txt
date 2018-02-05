@@ -1,6 +1,5 @@
 
 Check aliases
-
 unalias "alias=used"
 
 /etc/security/access.conf
@@ -9,15 +8,21 @@ check .bash_history file
 
 create the script
 
+
 Check hosts /etc/hosts   - should only have 127.0.0.1 addresses
+
 Quickly check DNS config/Bind files for DNS poison
+
 Check ALL commands for possible alteration 
+
 Cd /sbin
 Cat CMD
 If clear code is appears the command has been manipulated
 If there is random text and symbols the command is safe
+
 Check Processes
 	ps 	kill PID 	pkill -9 NAME
+
 Make New Sudo account
 --------------------------------------------------------------------------------------------------
 adduser NAME
@@ -46,6 +51,20 @@ Less/etc/passwd passwd –l NAME 	(THIS DISABLES)
 Check IP tables
 	Sudo iptables –L
 	
+	
+	
+Checking For ROOT level Compromised by UID and GID
+----------------------------------------------------
+
+find / -user root -perm -4000 -print
+
+
+find / -group kmem -perm -2000 -print
+
+
+
+
+
 SSH STUFF
 --------------------------------------------------------------------------------------------------
 Check for logins without authentication
