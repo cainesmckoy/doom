@@ -63,6 +63,13 @@ Switch(config)# end
 
 If you specify an encryption type and then enter a clear text password, you can not re-enter privileged EXEC mode. You cannot recover a lost encrypted password by any method.
 
+
+
+
+
+
+
+
 Disabling Password Recovery
 
 Switch> enable
@@ -76,6 +83,11 @@ Switch(config)# end
 Switch# show running-config
 
 Switch# copy running-config startup-config
+
+
+
+
+
 
 Setting a Telnet Password for a Terminal Line
 
@@ -92,6 +104,11 @@ Switch(config-line)# end
 Switch# show running-config
 
 Switch# copy running-config startup-config
+
+
+
+
+
 
 Setting Up the Switch to Run SSH
 
@@ -113,6 +130,9 @@ Switch# show running-config
 
 Switch# copy running-config startup-config
 
+
+
+
 Configuring the SSH server
 
 Switch> enable
@@ -132,6 +152,10 @@ Switch(config-line)# end
 Switch# show running-config
 
 Switch# copy running-config startup-config
+
+
+ssh -oKexAlgorithms=+diffie-hellman-group1-sha1 user@legacyhost
+
 
 show ip ssh - Shows the version and configuration information for the SSH server
 
