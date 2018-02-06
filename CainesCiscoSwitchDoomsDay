@@ -101,6 +101,8 @@ Switch(config)# ip domain-name your_domain
 
 Switch(config)# crypto key generate rsa
 
+ Create key size 1024 
+
 Switch(config)# end
 
 Switch# show running-config
@@ -112,7 +114,7 @@ Switch> enable
 
 Switch# configure terminal
 
-Switch(config)# ip ssh version 1
+Switch(config)# ip ssh version 2
 
 Switch(config)# ip ssh timeout 90 authentication-retries 2
 
