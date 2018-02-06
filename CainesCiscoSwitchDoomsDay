@@ -118,6 +118,10 @@ Switch# configure terminal
 
 Switch(config)# hostname your_hostname
 
+Switch(config)# aaa new-model
+
+Switch(config)# username cisco password 0 cisco
+
 Switch(config)# ip domain-name your_domain
 
 Switch(config)# crypto key generate rsa
@@ -141,7 +145,9 @@ Switch# configure terminal
 
 Switch(config)# ip ssh version 2
 
-Switch(config)# ip ssh timeout 90 authentication-retries 2
+Switch(config)# ip ssh time-out 90 
+
+Switch(config)# authentication-retries 2
 
 Switch(config)# line vty 1 10
 
@@ -154,13 +160,15 @@ Switch# show running-config
 Switch# copy running-config startup-config
 
 
-ssh -oKexAlgorithms=+diffie-hellman-group1-sha1 user@legacyhost
+ssh -oKexAlgorithms=+diffie-hellman-group1-sha1 -l cisco 10.254.0.101
 
 
 show ip ssh - Shows the version and configuration information for the SSH server
 
 
 show ssh - shows the status of the SSH server
+
+ssh-keygen -f "/home/user/.ssh/known_hosts" -R 10.254.0.101          #removing old sshkey on linux
 
 
 ip http secure-client-auth
