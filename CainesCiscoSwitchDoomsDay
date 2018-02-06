@@ -75,6 +75,8 @@ Switch(config)# end
 
 Switch# show running-config
 
+Switch# copy running-config startup-config
+
 Setting a Telnet Password for a Terminal Line
 
 Switch> enable
@@ -88,6 +90,8 @@ Switch(config-line)# password abcxyz543
 Switch(config-line)# end
 
 Switch# show running-config
+
+Switch# copy running-config startup-config
 
 Setting Up the Switch to Run SSH
 
@@ -107,6 +111,7 @@ Switch(config)# end
 
 Switch# show running-config
 
+Switch# copy running-config startup-config
 
 Configuring the SSH server
 
@@ -120,10 +125,13 @@ Switch(config)# ip ssh timeout 90 authentication-retries 2
 
 Switch(config)# line vty 1 10
 
-Switch(config)# end
+Switch(config-line)# transport input ssh
+
+Switch(config-line)# end
 
 Switch# show running-config
 
+Switch# copy running-config startup-config
 
 show ip ssh - Shows the version and configuration information for the SSH server
 
