@@ -174,23 +174,13 @@ ssh-keygen -f "/home/user/.ssh/known_hosts" -R 10.254.0.101          #removing o
 ip http secure-client-auth
 
 
-Setting up NTP
 
-Switch# configure terminal
 
-Switch(config)# ntp authenticate
+Setting Internal Clock
 
-Switch(config)# ntp authentication-key NUMBER md5 VALUE       # for NUMBER set a ke between 1 and 4294967295
+clock set hh:mm:ss day month year
 
-                                                              # for VALUE set a random key up to 8 CHAR
 
-Switch(config)# ntp trusted-key KEY-NUMBER                    # KEY-NUMBER is same as NUMBER
-
-Switch(config)# end
-
-Switch(config)# show running-config
-
-Switch(config)# copy running-config startup-config
 
 
 How to Configure Secure HTTP Servers and Clients
