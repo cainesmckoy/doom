@@ -1,3 +1,28 @@
+Log into GUI
+
+Make basic switch password
+
+enable telnet
+
+Make telnet password
+
+enable password encryption
+
+enable SSH
+
+make new user/password/delete old user
+
+disable telnet in GUI
+
+set internal clock
+
+attempt HTTPs
+
+VLAN The switch
+
+Span Port / mirror port
+
+
 User EXEC Begin a session
  using Telnet, SSH,
  or console.
@@ -354,6 +379,8 @@ Switch# show running-config
 
 
 
+Extra Links:
+https://www.cisco.com/c/en/us/support/docs/lan-switching/inter-vlan-routing/41860-howto-L3-intervlanrouting.html
 
 
 
