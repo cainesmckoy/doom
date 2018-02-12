@@ -145,13 +145,13 @@ Switch(config)# hostname your_hostname
 
 Switch(config)# aaa new-model
 
-Switch(config)# username cisco password 0 cisco
+Switch(config)# username cisco password 0 cisco   /  enable secret level 1 password secret123sample
 
 Switch(config)# ip domain-name your_domain
 
 Switch(config)# crypto key generate rsa
 
- Create key size 1024 
+ Create key size 1024 / 2048
 
 Switch(config)# end
 
@@ -236,6 +236,10 @@ Switch(config)# crypto ca enroll your_trustpoint
 
 Switch(config)# end
 
+Switch# show running-config
+
+Switch# copy running-config startup-config
+
 
 
 Configuring the Secure HTTP server
@@ -260,6 +264,10 @@ Switch(config)# ip http timeout-policy idle 120 life 240 requests 1
 
 Switch(config)# end
 
+Switch# show running-config
+
+Switch# copy running-config startup-config
+
 Configuring the Secure HTTP Client
 
 Switch# configure terminal
@@ -269,6 +277,10 @@ Switch(config)# ip http client secure-trustpoint your_trustpoint
 Switch(config)# ip http client secure-ciphersuite rc4-128-md5
 
 Switch(config)# end
+
+Switch# show running-config
+
+Switch# copy running-config startup-config
 
 
 IPV4 ACL
@@ -280,6 +292,13 @@ Switch(config)# access-list 102 deny tcp any host 10.1.1.2 eq telnet
 Switch(config)# access-list 102 permit tcp any host 10.1.1.2
 
 Switch(config)# access-list 102 deny tcp any any
+
+Switch(config)# end
+
+Switch# show running-config
+
+Switch# copy running-config startup-config
+
 
 Creating a Numbered Standard ACL
 
@@ -312,6 +331,10 @@ Switch(config)# access-list 101 permit igmp any any 14
 
 Switch(config)# end
 
+Switch# show running-config
+
+Switch# copy running-config startup-config
+
 
 Creating Named Standard ACLs
 
@@ -325,9 +348,11 @@ Switch(config-std-nacl)# deny 192.168.0.0 0.0.255.255 255.255.0.0 0.0.255.255
 
 Switch(config-std-nacl)# permit 10.108.0.0 0.0.0.0 255.255.255.0 0.0.0.0
 
-Switch(config-std-nacl)#end
+Switch(config)# end
 
 Switch# show running-config
+
+Switch# copy running-config startup-config
 
 
 Creating Extended NAmed ACLs
@@ -360,6 +385,13 @@ Switch(config-access-map)# action drop
 
 Switch(config)# vlan filter map 1 vlan-list 20-22
 
+Switch(config)# end
+
+Switch# show running-config
+
+Switch# copy running-config startup-config
+
+
 
 Creating a VLAN Map
 
@@ -371,9 +403,11 @@ Switch(config-access-map)# match ipaddress ip2
 
 Switch(config-access-map)# action action forward
 
-Switch(config-access-map)# end
+Switch(config)# end
 
 Switch# show running-config
+
+Switch# copy running-config startup-config
 
 
 
