@@ -355,6 +355,25 @@ Switch# show running-config
 Switch# copy running-config startup-config
 
 
+SET IP TO VLAN
+
+*just assign a new vlan like an interface thats there
+ 
+
+Switch(config)# configure terminal
+Switch(config)#interface vlan newID
+Switch(config-if)#ip address IP SUBNET
+Switch(config-if)#exit
+Switch(config)#ip default-gateway IP
+Switch(config)#end
+Switch# show interfaces vlan ID
+Switch# copy running-config startup-config
+
+
+
+
+COnfigure Interface to VLAN
+
 
 
 Creating VLAN
