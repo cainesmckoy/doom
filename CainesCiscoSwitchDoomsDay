@@ -355,62 +355,54 @@ Switch# show running-config
 Switch# copy running-config startup-config
 
 
-Creating Extended NAmed ACLs
-
-Switch> enable
-
-Switch# configure terminal
-
-Switch(config)# ip access-list extended 150
-
-Switch(config-ext-nacl)# permit 0 any any
-
-Switch(config-ext-nacl)# end
-
-Switch# show running-config
-
-Switch# copy running-config startup-config
 
 
-
-Configuring VLAN Maps
-
-Switch(config)# vlan access-map mmap_1 20
-
-Switch(config-access-map)# match ip address ip2
-
-Switch(config-access-map)# action forward
-or
-Switch(config-access-map)# action drop
-
-Switch(config)# vlan filter map 1 vlan-list 20-22
-
-Switch(config)# end
-
-Switch# show running-config
-
-Switch# copy running-config startup-config
-
-
-
-Creating a VLAN Map
+Creating VLAN
 
 Switch# configure terminal
+Switch(config)# vlan 20
+Switch(config-vlan)# name test20
+Switch(config-vlan)# end
 
-Switch(config)# vlan access-map map_1 20
-
-Switch(config-access-map)# match ipaddress ip2
-
-Switch(config-access-map)# action action forward
-
-Switch(config)# end
-
-Switch# show running-config
-
-Switch# copy running-config startup-config
+Switch# vlan database
+Switch(vlan)# vlan 20 name test20
+Switch(vlan)# exit
 
 
+Assign a static port
 
+Switch# configure terminal
+Enter configuration commands, one per line. End with CNTL/Z.
+Switch(config)# interface gigabitethernet0/1
+Switch(config-if)# switchport mode access
+Switch(config-if)# switchport access vlan 2
+Switch(config-if)# end
+
+
+Configure a range of interfaces
+
+configure terminal
+
+interface range {port-range | macro | macro_name}
+
+Use the normal configuration commands to apply the configuration
+parameters to all interfaces in the range. Each command is executed
+as it is entered.
+
+end
+
+show interfaces [interface-id]
+
+copy running-config startup-config
+
+Switch# configure terminal
+Switch(config)# interface range gigabitethernet0/1 - 4
+Switch(config-if-range)# speed 100
+
+
+Switch# configure terminal
+Switch(config)# interface range fastethernet0/1 - 3, gigabitethernet0/1 - 2
+Switch(config-if-range)# flowcontrol receive on
 
 
 Extra Links:
