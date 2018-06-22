@@ -441,3 +441,181 @@ If you configure the enable secret command, it takes precedence over the enable 
 two commands cannot be in effect simultaneously.
 If you enable password encryption, it applies to all passwords including username passwords, authentication
 key passwords, the privileged command password, and console and virtual terminal line passwords.
+
+----------------------------------------------------
+Reset Cisco Catalyst 2900/3500/3550/XL to factory defaults
+-----------------------------------------------------------
+
+
+1. Unplug the switch.
+2. While holding the Mode button on the left side of front panel , reconnect power.
+3. When the LED above Port 1x goes out, release the Mode button.
+4. Issue the flash_init command:
+switch: flash_init
+Initializing flash...
+
+5. Issue the load_helper command:
+switch: load_helper
+switch:
+6. Rename the configuration file:
+switch: rename flash:config.text flash:config.old 
+7. Boot the switch using the boot command:
+switch: boot
+Loading "flash:c3550-i9q3l2-mz...EA1c.bin"...########
+
+Would you like to enter the initial configuration dialog? [yes/no]
+8. Select "yes" when you are ready to configure the switch or "no" to start without configuration wizard. You're done.
+
+
+
+-----------------------------------------------------
+BASIC CONFIG FOR SWITCH
+-----------------------------------------------------
+
+test>enable
+Password:
+test#show running-config
+Building configuration...
+
+Current configuration:
+!
+version 12.0
+no service pad
+service timestamps debug uptime
+service timestamps log uptime
+no service password-encryption
+!
+hostname test
+!
+enable secret 5 $1$h865$DvabIUib10.IxyvL0GLba0
+!
+!
+!
+!
+!
+!
+ip subnet-zero
+!
+!
+!
+interface FastEthernet0/1
+!
+interface FastEthernet0/2
+!
+interface FastEthernet0/3
+!
+interface FastEthernet0/4
+!
+interface FastEthernet0/5
+!
+interface FastEthernet0/6
+!
+interface FastEthernet0/7
+!
+interface FastEthernet0/8
+!
+interface FastEthernet0/9
+!
+interface FastEthernet0/10
+!
+interface FastEthernet0/11
+!
+interface FastEthernet0/12
+!
+interface FastEthernet0/13
+!
+interface FastEthernet0/14
+!
+interface FastEthernet0/15
+!
+interface FastEthernet0/16
+!
+interface FastEthernet0/17
+!
+interface FastEthernet0/18
+!
+interface FastEthernet0/19
+!
+interface FastEthernet0/20
+!
+interface FastEthernet0/21
+!
+interface FastEthernet0/22
+!
+interface FastEthernet0/23
+!
+interface FastEthernet0/24
+!
+interface FastEthernet0/25
+!
+interface FastEthernet0/26
+!
+interface FastEthernet0/27
+!
+interface FastEthernet0/28
+!
+interface FastEthernet0/29
+!
+interface FastEthernet0/30
+!
+interface FastEthernet0/31
+!
+interface FastEthernet0/32
+!
+interface FastEthernet0/33
+!
+interface FastEthernet0/34
+!
+interface FastEthernet0/35
+!
+interface FastEthernet0/36
+!
+interface FastEthernet0/37
+!
+interface FastEthernet0/38
+!
+interface FastEthernet0/39
+!
+interface FastEthernet0/40
+!
+interface FastEthernet0/41
+!
+interface FastEthernet0/42
+!
+interface FastEthernet0/43
+!
+interface FastEthernet0/44
+!
+interface FastEthernet0/45
+!
+interface FastEthernet0/46
+!
+interface FastEthernet0/47
+!
+interface FastEthernet0/48
+!
+interface GigabitEthernet0/1
+!
+interface GigabitEthernet0/2
+!
+interface VLAN1
+ ip address 10.2.2.1 255.255.255.0
+ no ip directed-broadcast
+ no ip route-cache
+!
+snmp-server engineID local 00000009020000097C165940
+snmp-server community private RW
+snmp-server community public RO
+snmp-server chassis-id 0x17
+!
+line con 0
+ transport input none
+ stopbits 1
+line vty 0 4
+ password password
+ login
+line vty 5 15
+ password password
+ login
+!
+end
