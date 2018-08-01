@@ -1,4 +1,9 @@
 
+*TOOLS***********
+*-unix-privesc-check
+*
+*
+*****************
 Check aliases
 unalias "alias=used"
 
