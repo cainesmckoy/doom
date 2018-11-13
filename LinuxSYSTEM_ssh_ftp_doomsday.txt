@@ -1,7 +1,7 @@
 
 *TOOLS***********
 *-unix-privesc-check
-*
+*-https://github.com/mzet-/linux-exploit-suggester
 *
 *****************
 Check aliases
