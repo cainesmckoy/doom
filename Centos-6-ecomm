@@ -1,11 +1,73 @@
-SECURE USER
-.
-.
-.
-.
+*TOOLS***********
+*-unix-privesc-check
+*-https://github.com/mzet-/linux-exploit-suggester
+*
+*****************
+Check aliases
+unalias "alias=used"
+
+/etc/security/access.conf
+
+check .bash_history file
+
+create the script
+
+
+Check hosts /etc/hosts   - should only have 127.0.0.1 addresses
+
+Quickly check DNS config/Bind files for DNS poison
+
+Check ALL commands for possible alteration 
+
+Cd /sbin
+Cat CMD
+If clear code is appears the command has been manipulated
+If there is random text and symbols the command is safe
+
+Check Processes
+	ps 	kill PID 	pkill -9 NAME
+
+Make New Sudo account
+--------------------------------------------------------------------------------------------------
+adduser NAME
+usermod –aG NAME
+Test Account
+	Su – name
+REMOVE OLD SUDO ACCOUNTS
+
+CHANGE ROOT PASSWORD
+
+Change Passwords Before Lunch and right after Lunch
+
+	passwd NAME
+Check sudoers
+
+	VI sudoers
+	
+Get rid of extra accounts
+
+	Cut –d: -f1,3 /etc/passwd (LISTS ALL USERS)
+	
+Less/etc/passwd passwd –l NAME 	(THIS DISABLES)
+
+	Userdel –r NAME (THIS DELETES)
+	
+Check IP tables
+	Sudo iptables –L
+	
+	
+	
+Checking For ROOT level Compromised by UID and GID
+----------------------------------------------------
+
+find / -user root -perm -4000 -print
+
+
+find / -group kmem -perm -2000 -print
+
 
 CentOS  Static IP
-
+----------------------------------------------------
 /etc/sysconfig/network-scripts/ifcfg-eth0
 
 DEVICE=eth0
@@ -31,6 +93,7 @@ nameserver 8.8.8.8
 
 
 set up Lamp server
+----------------------------------------------------
 https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-centos-6
 
 
@@ -71,7 +134,7 @@ DirectoryIndex home.php
 directoryindex home.php
 
 IPTABLES
-
+----------------------------------------------------
 https://www.digitalocean.com/community/tutorials/how-to-set-up-a-basic-iptables-firewall-on-centos-6
 LIST iptables
 iptables -L -–line-numbers
@@ -95,7 +158,7 @@ service iptables restart
 
 
 configure Ecommerce
-
+----------------------------------------------------
 https://www.howtoforge.com/how-to-install-oscommerce-on-centos-7
 
 CREATE A DATABASE FOR Ecomm
