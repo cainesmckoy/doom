@@ -1,0 +1,138 @@
+SECURE USER
+.
+.
+.
+.
+
+CentOS  Static IP
+
+/etc/sysconfig/network-scripts/ifcfg-eth0
+
+DEVICE=eth0
+TYPE=Ethernet
+BOOTPROTO=none
+NM_CONTROLLED=no
+DEFROUTE=yes
+IPADDR=X.X.X.X
+PREFIX=24
+GATEWAY=X.X.X.X
+PEERDNS=yes
+DNS1=8.8.8.8
+PEERROUTES=yes
+IPV4_FAILURE_FATAL=no
+IPV6INIT=NO
+NAME=eth0
+UUID=THIS IS ALREADY SET
+ONBOOT=yes
+
+/etc/resolv.conf
+
+nameserver 8.8.8.8
+
+
+set up Lamp server
+https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-centos-6
+
+
+https://www.howtoforge.com/apache_php_mysql_on_centos_7_lamp
+
+sudo yum install httpd
+sudo service httpd start
+
+sudo yum install mysql-server
+sudo service mysqld start
+sudo /usr/bin/mysql_secure_installation
+#may need to create file var/lib/mysql/mysql.sock 
+sudo yum install php php-mysql
+yum search php-
+#also check whats running on your server already for http modules and php modules
+yum info name of the module
+sudo chkconfig httpd on
+sudo chkconfig mysqld on
+
+#When the index.html page is removed this flaw of the system version can be fixed in two lines on 
+/etc/httpd/conf/httpd.conf
+
+
+
+ServerTokens Prod
+ServerSignature off
+
+Restart the service, an that page is no longer displaying the system version
+
+
+.htaccess file #sets default page when browsed to
+
+vi var/www/html/.htaccess
+DirectoryIndex home.php
+
+#also have to edit option in etc/httpd/conf/httpd.conf
+
+directoryindex home.php
+
+IPTABLES
+
+https://www.digitalocean.com/community/tutorials/how-to-set-up-a-basic-iptables-firewall-on-centos-6
+LIST iptables
+iptables -L -–line-numbers
+
+DELETE A RULE
+iptables -D INPUT X
+
+
+iptables -A INPUT -p tcp -m tcp -–dport 80 -j ACCEPT
+iptables -A INPUT -p tcp -m tcp -–dport 443 -j ACCEPT
+
+add this line at the end of iptables
+ iptables -A INPUT -j REJECT
+
+SAVE YOUR IPTABLES
+
+service iptables save
+service iptables restart
+
+
+
+
+configure Ecommerce
+
+https://www.howtoforge.com/how-to-install-oscommerce-on-centos-7
+
+CREATE A DATABASE FOR Ecomm
+mysql -u root -p
+At MySQL prompt use:
+
+CREATE DATABASE osCommercedb;
+CREATE USER osCommerceuser@localhost IDENTIFIED BY 'osCommercepassword';
+GRANT ALL PRIVILEGES on osCommercedb.* to osCommerceuser@localhost ;
+FLUSH PRIVILEGES;
+exit
+cd /tmp
+yum install wget unzip net-tools
+wget http://www.oscommerce.com/files/oscommerce-2.3.4.zip
+unzip oscommerce-2.3.4.zip
+mv oscommerce-2.3.4 /var/www/html/
+#We need to give appropriate permissions for allowing web-installations.
+
+chmod 777 /var/www/html/oscommerce-2.3.4/catalog/includes/configure.php
+chmod 777 /var/www/html/oscommerce-2.3.4/catalog/admin/includes/configure.php
+#the permissions should probably be checked and secured later
+#Additionally we need Selinux over-rides by using:
+chcon -R -t httpd_sys_content_rw_t /var/www/html/oscommerce-2.3.4/
+Now open a browser and open the link http://xxx.xxx.xxx.xxx/oscommerce-2.3.4/catalog/install/index.php:
+
+Now enter the database entry as created before, in my case it was:
+Database Server : localhost
+Username : osCommerceuser
+Password : osCommercepassword
+Database Name : osCommercedb
+After filling the values press Continue:
+
+Again it will ask for some details for the web-store. Please fill the values of your choice and requirement. In my case I used:
+Store name : Test_store
+Store Ownername : Test_owner
+Store Owner email-address: admin@example.com
+Administrator Username : admin
+Administrator Password: admin
+
+http://xxx.xxx.xxx.xxx/oscommerce-2.3.4/catalog/index.php and Administration Tool form link http://192.168.0.100/oscommerce-2.3.4/catalog/admin/login.php as follows:
