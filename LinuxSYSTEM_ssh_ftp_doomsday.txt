@@ -57,6 +57,12 @@ Check IP tables
 	Sudo iptables –L
 	
 	
+grep pattern files | sort -t: -u -k1,1
+-t: - use : as the delimiter
+-k1,1 - sort based on the first field only
+-u - removed duplicates (based on the first field)
+	
+	
 	
 Checking For ROOT level Compromised by UID and GID
 ----------------------------------------------------
