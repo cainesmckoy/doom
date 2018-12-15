@@ -2,7 +2,7 @@
 *TOOLS***********
 *-unix-privesc-check
 *-https://github.com/mzet-/linux-exploit-suggester
-*
+*-systemctl list-units --type service --all # LISTS ALL enabled and disabled service on a linux machine
 *****************
 Check aliases
 unalias "alias=used"
