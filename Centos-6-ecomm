@@ -9,6 +9,8 @@ grep -C 5 "password" [filename]
 
 find . -name "*.php" -print0 | xargs -0 grep -i -n "var $password"
 
+sudo vi /var/lib/mysql/mysql/user.MYD # this file is a binary AND/OR encrypted with users and passwords
+
 Check aliases
 unalias "alias=used"
 
