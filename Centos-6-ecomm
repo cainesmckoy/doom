@@ -3,6 +3,12 @@
 *-https://github.com/mzet-/linux-exploit-suggester
 *
 *****************
+check for passwords in clear or passwords being dumped
+
+grep -C 5 "password" [filename]
+
+find . -name "*.php" -print0 | xargs -0 grep -i -n "var $password"
+
 Check aliases
 unalias "alias=used"
 
