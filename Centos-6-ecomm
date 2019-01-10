@@ -170,18 +170,33 @@ CREATE USER osCommerceuser@localhost IDENTIFIED BY 'osCommercepassword';
 GRANT ALL PRIVILEGES on osCommercedb.* to osCommerceuser@localhost ;
 FLUSH PRIVILEGES;
 exit
+
 cd /tmp
+
 yum install wget unzip net-tools
+
 wget http://www.oscommerce.com/files/oscommerce-2.3.4.zip
+
+************
+https://github.com/gburton/Responsive-osCommerce/archive/master.zip
+PHP 7 ecomm package
+************
+
 unzip oscommerce-2.3.4.zip
+
 mv oscommerce-2.3.4 /var/www/html/
+
 #We need to give appropriate permissions for allowing web-installations.
 
 chmod 777 /var/www/html/oscommerce-2.3.4/catalog/includes/configure.php
+
 chmod 777 /var/www/html/oscommerce-2.3.4/catalog/admin/includes/configure.php
+
 #the permissions should probably be checked and secured later
 #Additionally we need Selinux over-rides by using:
+
 chcon -R -t httpd_sys_content_rw_t /var/www/html/oscommerce-2.3.4/
+
 Now open a browser and open the link http://xxx.xxx.xxx.xxx/oscommerce-2.3.4/catalog/install/index.php:
 
 Now enter the database entry as created before, in my case it was:
