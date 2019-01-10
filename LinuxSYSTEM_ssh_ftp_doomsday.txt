@@ -42,8 +42,13 @@ Change Passwords Before Lunch and right after Lunch
 
 	passwd NAME
 Check sudoers
+--------------------------------------------------------------------------------------------------
 
-	VI sudoers
+grep -v -E "^#" /etc/passwd | awk -F: '$3 == 0 { print $1}'   # List of super users
+
+awk -F: '($3 == "0") {print}' /etc/passwd   # List of super users
+
+VI sudoers
 	
 Get rid of extra accounts
 
@@ -58,6 +63,7 @@ Check IP tables
 	
 	
 grep pattern files | sort -t: -u -k1,1
+
 -t: - use : as the delimiter
 -k1,1 - sort based on the first field only
 -u - removed duplicates (based on the first field)
