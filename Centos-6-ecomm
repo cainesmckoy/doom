@@ -141,6 +141,35 @@ DirectoryIndex home.php
 
 directoryindex home.php
 
+install PHP7
+-------------------------------------------------------------------------------------------------------
+#remove php5 first
+sudo yum list installed
+sudo yum erase php-common
+
+
+yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm
+
+yum install http://rpms.remirepo.net/enterprise/remi-release-6.rpm
+
+yum install yum-utils
+
+yum-config-manager --enable remi-php70
+
+yum install php php-mcrypt php-cli php-gd php-curl php-mysql php-ldap php-zip php-fileinfo
+
+php -V 
+
+#enable the module in httpd
+
+ls /etc/httpd/modules/
+
+libphp7.so #this is prob the name
+
+LoadModule php7_module modules/libphp7.so
+
+sudo service httpd restart
+
 IPTABLES
 ----------------------------------------------------
 https://www.digitalocean.com/community/tutorials/how-to-set-up-a-basic-iptables-firewall-on-centos-6
