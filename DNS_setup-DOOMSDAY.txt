@@ -64,6 +64,10 @@ Secondarydns	IN	A	172.20.240.25
 (may have to replace masterdns with secondary dns )
 Define forward and reverse files
 Sudo vi /etc/bind/named.conf.local
+
+#for ubuntu 12 
+}; # these characters are needed
+
 Zone “free.dom”{
 	Type master;
 File “/etc/bind/forward.free”;
