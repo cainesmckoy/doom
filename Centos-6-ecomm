@@ -94,6 +94,7 @@ IPV6INIT=NO
 NAME=eth0
 UUID=THIS IS ALREADY SET
 ONBOOT=yes
+DOMAIN=sample.com
 
 /etc/resolv.conf
 
