@@ -1,1 +1,3 @@
-![Screenshot] (https://github.com/cainesmckoy/doom/blob/master/flowchart.jpeg?raw=true)
+<p align="center">
+<img src="https://raw.githubusercontent.com/cainesmckoy/doom/master/flowchart.jpeg" width="350" title="hover text">
+</p>
